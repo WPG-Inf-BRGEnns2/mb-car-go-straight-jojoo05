@@ -81,20 +81,15 @@ function schreibeGeschwindigkeit () {
 }
 
 function korrigiereRichtung() {
-input.compassHeading()
+    if (input.compassHeading() < sollRichtung){
+        vr += vr - 5;
+        vl += vl + 5;
 
-    if (true) {(input.compassHeading() < sollRichtung)
-    set vr = vr - 1
-    set vl = vl + 1
-
-    } else {(input.compassHeading() > sollRichtung)
-    set vr = vr + 1
-    set vl = vl - 1
-    
-    } else {(input.compassHeading() = sollRichtung)
-    set vr = vr
-    set vl = vl
-
+    } else if (input.compassHeading() > sollRichtung){
+        vr += vr + 5;
+        vl += vl - 5;
+    } 
+       
 }
 
 let vl = 0
@@ -116,4 +111,3 @@ basic.forever(function () {
     serial.writeValue("vl", vl)
     schreibeGeschwindigkeit()
 })
-
