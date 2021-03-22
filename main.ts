@@ -79,8 +79,27 @@ function schreibeGeschwindigkeit () {
     pins.analogWritePin(AnalogPin.P14, vr)
     pins.analogWritePin(AnalogPin.P13, vl)
 }
+
+function korrigiereRichtung() {
+input.compassHeading()
+
+    if (true) {(input.compassHeading() < sollRichtung)
+    set vr = vr - 1
+    set vl = vl + 1
+
+    } else {(input.compassHeading() > sollRichtung)
+    set vr = vr + 1
+    set vl = vl - 1
+    
+    } else {(input.compassHeading() = sollRichtung)
+    set vr = vr
+    set vl = vl
+
+}
+
 let vl = 0
 let vr = 0
+let sollRichtung = 180
 stop()
 basic.showLeds(`
     . . . . .
